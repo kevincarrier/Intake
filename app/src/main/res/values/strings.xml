@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Intake</string>
+    <string name="microphone">mic</string>
+    <string name="settings">settings</string>
+    <string name="speech_prompt">Add new food item</string>
+    <string name="speech_not_supported">Sorry this speech recognition not enabled</string>
+
+
 </resources>
