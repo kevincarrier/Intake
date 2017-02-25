@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
@@ -11,18 +12,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.intakers.intake.MainActivity">
 
-
     <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:elevation="6dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:id="@+id/toolbar" />
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <TextView
+        android:id="@+id/txtSpeechInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        android:textStyle="normal" />
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
@@ -30,7 +38,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="6dp"
         android:minHeight="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/my_toolbar"
         android:layout_alignParentStart="true"
         android:id="@+id/tabLayout"/>
 
@@ -39,6 +47,4 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/tabLayout"/>
-
-
 </RelativeLayout>

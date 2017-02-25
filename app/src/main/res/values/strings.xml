@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Intake</string>
+    <string name="microphone">mic</string>
+    <string name="settings">settings</string>
+    <string name="camera">camera</string>
+
+    <string name="speech_prompt">Add new food item</string>
+    <string name="speech_not_supported">Sorry this speech recognition not enabled</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
