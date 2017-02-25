@@ -7,12 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
+
+        //logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
 
         final EditText username = (EditText) findViewById(R.id.UsernameEditText);
         final EditText password = (EditText) findViewById(R.id.passwordEditText);
