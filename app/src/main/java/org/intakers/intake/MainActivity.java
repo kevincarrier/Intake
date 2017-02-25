@@ -10,5 +10,11 @@ public class MainActivity extends AppCompatActivity {
         //Test to check branch
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+       ManualAddFragment theFrag = new ManualAddFragment();
+
+        getFragmentManager().beginTransaction().add(R.id.fraggy , theFrag).commit();
+        */
     }
 }
