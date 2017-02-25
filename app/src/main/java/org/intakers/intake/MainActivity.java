@@ -1,5 +1,6 @@
 package org.intakers.intake;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-       ManualAddFragment theFrag = new ManualAddFragment();
-
-        getSupportFragmentManager().beginTransaction().add(R.id.fraggy, theFrag).commit();
+        /* Add this if you want to launch the manual search function
+        Intent intent = new Intent(MainActivity.this , ManualAddActivity.class);
+        startActivity(intent);
+        */
     }
 }

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -19,9 +21,28 @@ public class ManualAddFragment extends Fragment {
         return new ManualAddFragment();
     }
 
+    Button submit;
+    EditText foodInput;
+
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_manual_add , container, false);
+        View v = inflater.inflate(R.layout.fragment_manual_add , container, false);
+
+
+        submit = (Button) v.findViewById(R.id.submitButton);
+
+        foodInput = (EditText) v.findViewById(R.id.inputFood);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Hi" , "Hi");
+                Toast.makeText(getActivity().getApplicationContext() , foodInput.getText().toString() , Toast.LENGTH_SHORT ).show();
+            }
+        });
+
+
+        return v;
     }
 
 }
