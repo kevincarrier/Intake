@@ -7,8 +7,15 @@
             android:id="@+id/action_microphone"
             android:icon="@drawable/ic_mic_none_black_24dp"
             android:title="@string/microphone"
-            app:showAsAction="collapseActionView|ifRoom"/>
+            app:showAsAction="always"/>
 
+        <item
+            android:id="@+id/action_camera"
+            android:icon="@drawable/ic_camera_alt_black_24dp"
+            android:title="@string/camera"
+            app:showAsAction="always"
+
+        />
         <!-- Settings, should always be in the overflow -->
         <item android:id="@+id/action_settings"
             android:title="@string/settings"
