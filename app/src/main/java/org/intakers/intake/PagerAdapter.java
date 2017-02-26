@@ -12,7 +12,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     private int numTabs;
 
-    private TabFrag1 tab1;
+    private GraphFragment tab1;
     private ManualAddFragment tab3;
     private TabFrag1 tab2;
 
@@ -25,7 +25,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                tab1 = new TabFrag1();
+                tab1 = new GraphFragment();
                 return tab1;
             case 1:
                 tab2 = new TabFrag1();

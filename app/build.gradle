@@ -27,6 +27,12 @@ repositories {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -44,6 +50,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.2.0'
 
+    compile 'com.microsoft.projectoxford:vision:1.0.374'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 
     /*Kevin's Gradle*/
     compile fileTree(dir: 'libs', include: ['*.jar'])
