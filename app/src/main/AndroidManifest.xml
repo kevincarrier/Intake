@@ -41,15 +41,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".resulter">
+        <activity android:name=".ResultActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter></activity>
         <activity android:name=".ManualAddActivity" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".APIresultsActivity"></activity>
     </application>
 
 </manifest>

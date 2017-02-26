@@ -5,6 +5,8 @@ import android.os.Message;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -21,12 +23,14 @@ import java.util.logging.Logger;
  * Created by chrx on 2/26/17.
  */
 
-public class resulter extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
     Logger log = Logger.getAnonymousLogger();
     String urlString = " https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=9mm0lhA9e5I5iXMmxvVX9AVQAydZunC62oFvbjMS&nutrients=208&nutrients=203&nutrients=255&nutrients=204&nutrients=205&nutrients=291&nutrients=269&nutrients=301&nutrients=303&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=309&nutrients=401&nutrients=324&nutrients=605&nutrients=606&nutrients=262&nutrients=323&ndbno=18148";
 
     TextView result;
+
+    ListView nutrientsListView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class resulter extends AppCompatActivity {
     public void retrieveData() {
         Thread t = new Thread() {
             public void run() {
-                result = (TextView) findViewById(R.id.resultView);
+                //result = (TextView) findViewById(R.id.resultView);
                 log.info("run() is called");
                 try
 
@@ -83,40 +87,37 @@ public class resulter extends AppCompatActivity {
                 Log.d("SUCCESS" , "SUCCESS");
 
                 JSONObject report = blockObject.getJSONObject("report");
-                Log.d("SUCCESS" , "SUCCESS");
                 JSONArray foods = report.getJSONArray("foods");
-                Log.d("SUCCESS" , "SUCCESS");
-                JSONObject food_uno= foods.getJSONObject(0);
-                Log.d("SUCCESS" , "SUCCESS");
+                JSONObject food_uno= foods.getJSONObject(0); //never more than one food
                 JSONArray nutrients = food_uno.getJSONArray("nutrients");
-                Log.d("SUCCESS" , "SUCCESS");
                 JSONObject nutrient_uno = nutrients.getJSONObject(0);
-                Log.d("SUCCESS" , "SUCCESS");
-                /*
-                JSONObject id_uno = nutrient_uno.getJSONObject("nutrient_id");
-                Log.d("SUCCESS" , "SUCCESS");
-                */
 
-                /*
-                JSONObject nutrient = nurtient_uno.getJSONObject("nutrient_id");
-                Log.d("SUCCESS" , "SUCCESS");
-                */
+                ((TextView) findViewById(R.id.FoodTitle)).setText(food_uno.getString("name"));
 
-                /*
-                JSONObject nutrients = foods.getJSONObject("nutrients");
-                Log.d("SUCCESS" , "SUCCESS");
-                JSONObject nutrient_id = nutrients.getJSONObject("nutrients_id");
-                */
+                //make loop
+                String[] nutrientsLists;
+                nutrientsLists = new String[nutrients.length()];
+
+                nutrientsListView = (ListView) findViewById(R.id.listviewNutrient);
+                ArrayAdapter<String> nutrientsAdapter = new ArrayAdapter<String>(ResultActivity.this , android.R.layout.simple_list_item_1 , nutrientsLists);
+                nutrientsListView.setAdapter(nutrientsAdapter);
+                int i=0;
 
 
+                Log.d("nutrients" , "nutrients" + nutrients.length());
+                while(i < nutrients.length()) {
+                    Log.d("Iter", "iter");
+                    nutrientsLists[i] =
+                        nutrients.getJSONObject(i).getString("nutrient") + "\n" +
+                        nutrients.getJSONObject(i).getString("value") + " " +
+                        nutrients.getJSONObject(i).getString("unit");
+                        i++;
+                    //JSONObject nutrient_uno = nutrients.getJSONObject(0);
+                }
 
-                ((TextView) findViewById(R.id.resultView)).setText(nutrient_uno.getString("nutrient_id"));
-                //((TextView) findViewById(R.id.resultView)).setText(report.getString("subset"));
-                //((TextView) findViewById(R.id.resultView)).setText(foods.getString("ndbno"));
-                //((TextView) findViewById(R.id.resultView)).setText(report.getString("value"));
-                //((TextView) findViewById(R.id.resultView)).setText(report.getString("cranberry"));
-                //((TextView) getView().findViewById(R.id.resultView)).setText(btce.getString("value"));
 
+
+                //((TextView) findViewById(R.id.resultView)).setText(nutrient_uno.getString("nutrient_id"));
             } catch (JSONException e) {
                 Log.d("FAILED" , "FAILED");
                 e.printStackTrace();

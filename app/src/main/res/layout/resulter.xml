@@ -4,8 +4,15 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:id="@+id/FoodTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/resultView" />
+        android:layout_height="124dp" />
+
+    <ListView
+        android:id="@+id/listviewNutrient"
+        android:dividerHeight="10.0sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
