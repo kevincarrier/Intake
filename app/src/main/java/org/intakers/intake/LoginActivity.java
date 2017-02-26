@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         //logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
 
 
-        final EditText username = (EditText) findViewById(R.id.UsernameEditText);
+        final EditText email = (EditText) findViewById(R.id.UsernameEditText);
         final EditText password = (EditText) findViewById(R.id.passwordEditText);
         final Button sign_in_button = (Button) findViewById(R.id.sign_in_button);
         final LoginButton fb_login_button = (LoginButton) findViewById(R.id.login_button);
@@ -69,17 +69,23 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.v("LoginActivity", response.toString());
 
                                 // Application code
+                                String user_fb_email = null;
                                 try {
-                                    String email = object.getString("email");
+                                    user_fb_email = object.getString("email");
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                                //PASS THIS
+                                //user_fb_email
+                                System.out.println(user_fb_email);
                             }
                         });
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
+
+                //System.out.println(user_email);
 
 
             }
@@ -102,9 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (username.getText().length() == 0 || password.getText().length() == 0) {
+                if (email.getText().length() == 0 || password.getText().length() == 0) {
                     Toast.makeText(getApplicationContext(),"All Fields Required",Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
