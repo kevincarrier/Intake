@@ -21,6 +21,7 @@
             android:layout_below="@id/textFrag1"
             android:layout_centerInParent="true"
             android:layout_alignStart="@id/textFrag1"
+
             android:text="what"
             android:textSize="18sp"/>
     </RelativeLayout>

@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Set up the tabs on the tab layout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tag1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tag2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tag3"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_list_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_restaurant_menu_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //set the fragment viewpager for swiping
@@ -150,7 +150,11 @@ public class MainActivity extends AppCompatActivity {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     log.info(result.get(0));
 
-                    txtSpeechInput.setText(result.get(0));
+                    Intent sendFood = new Intent(MainActivity.this, FoodMappingActivity.class);
+                    sendFood.putExtra("food", result.get(0));
+                    startActivity(sendFood);
+
+                    //txtSpeechInput.setText(result.get(0));
                     log.info(result.get(0));
                 }
                 break;

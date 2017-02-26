@@ -1,5 +1,6 @@
 package org.intakers.intake;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Handler;
@@ -35,12 +36,17 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resulter);
-        retrieveData();
+
+        Intent recievedInfo = getIntent();
+        String recievedURL = recievedInfo.getStringExtra("URL");
+
+
+        retrieveData(recievedURL);
         //run();
     }
 
 
-    public void retrieveData() {
+    public void retrieveData(final String recievedURL) {
         Thread t = new Thread() {
             public void run() {
                 //result = (TextView) findViewById(R.id.resultView);
@@ -48,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
                 try
 
                 {
-                    URL url = new URL(urlString);
+                    URL url = new URL(recievedURL);
                     BufferedReader reader = new BufferedReader(
                             new InputStreamReader(
                                     url.openStream()));

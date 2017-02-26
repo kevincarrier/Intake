@@ -1,10 +1,12 @@
 package org.intakers.intake;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -46,6 +48,10 @@ public class FoodMappingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodmapping);
+
+//        Intent receiveInfo = getIntent();
+//        final String receiveFood = receiveInfo.getStringExtra("food");
+
         try{
             mClient = new MobileServiceClient(
                     "https://intakemobileapp.azurewebsites.net",
@@ -62,7 +68,8 @@ public class FoodMappingActivity extends Activity {
             mFoodMappingTable = mClient.getTable(FoodMapping.class);
             initLocalStore().get();
             //addItem();
-            //getData();
+            Log.d("This getData()", "asd");
+            getData();
 
         }catch (MalformedURLException e) {
             Log.d("Malformed Exception", "There was an error creating the Mobile Service. Verify the URL. Error: " + e);
@@ -84,8 +91,10 @@ public class FoodMappingActivity extends Activity {
             protected Void doInBackground(Void... params) {
 
                 try {
+                    Log.d("before final", "does");
                     final List<FoodMapping> results = refreshItemsFromMobileServiceTable();
 
+                    Log.d("After final result", "plz");
                     //Offline Sync
                     //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
 
@@ -97,6 +106,14 @@ public class FoodMappingActivity extends Activity {
                             for (FoodMapping item : results) {
                                 Log.d("Add New Food", "Add: " + item.getFood());
                                 Log.d("Add New URL", "Add: " + item.getUrl());
+
+                                Intent sendURL = new Intent(FoodMappingActivity.this, ResultActivity.class);
+                                sendURL.putExtra("URL", item.getUrl());
+                                Log.d("URL", item.getUrl());
+                                startActivity(sendURL);
+
+
+
                                 //mAdapter.add(item);
                             }
                         }
@@ -113,8 +130,17 @@ public class FoodMappingActivity extends Activity {
     }
 
     private List<FoodMapping> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
+
+        Intent receiveInfo = getIntent();
+        final String receiveFood = receiveInfo.getStringExtra("food");
+        Log.d("hi" , receiveFood);
+
+        EditText editText = (EditText) findViewById(R.id.editText);
+        editText.setText(receiveFood);
+
+        //Error is here
         return mFoodMappingTable.where().field("food").
-                eq(val("Shrimp")).execute().get();
+                eq(val(receiveFood)).execute().get();
     }
 
     private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
