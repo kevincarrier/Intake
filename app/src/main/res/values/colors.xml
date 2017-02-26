@@ -5,6 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="clear">#00ffffff</color>
+    <color name="clearBlue">#6a64c7ff</color>
     <color name="button_pressed_background">#66B2FF</color>
     <color name="button_enabled_background">#3399FF</color>
     <color name="button_disabled_background">#C0C0C0</color>
