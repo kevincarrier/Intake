@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "23.0.0"
     defaultConfig {
         applicationId "org.intakers.intake"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,6 +21,10 @@ android {
 
 repositories {
     mavenCentral()
+    /*Kevin*/
+    flatDir {
+        dirs 'aars'
+    }
 }
 
 dependencies {
@@ -39,4 +43,13 @@ dependencies {
     compile "com.android.support:support-core-utils:25.2.0"
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.2.0'
+
+
+    /*Kevin's Gradle*/
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.microsoft.azure:azure-mobile-android:3.1.0'
+    compile (group: 'com.microsoft.azure', name: 'azure-notifications-handler', version: '1.0.1', ext: 'jar')
 }
