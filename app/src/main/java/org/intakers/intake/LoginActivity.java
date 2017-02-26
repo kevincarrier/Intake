@@ -3,6 +3,7 @@ package org.intakers.intake;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +14,16 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 
@@ -42,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.passwordEditText);
         final Button sign_in_button = (Button) findViewById(R.id.sign_in_button);
         final LoginButton fb_login_button = (LoginButton) findViewById(R.id.login_button);
+        fb_login_button.setReadPermissions(Arrays.asList(
+                "public_profile", "email", "user_friends"));
+        //fb_login_button.setReadPermissions("user_birthday");
         final TextView info = (TextView) findViewById(R.id.textView);
         //fb_login_button.setReadPermissions("Email");
 
@@ -51,48 +61,39 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
-                //sign_in_button.setText("You are already logged in");
-                //Toast.makeText(getApplicationContext(),"Login Success",Toast.LENGTH_SHORT).show();
-                log.info("onSuccess()");
-                info.setText(
-                        "User ID: "
-                                + loginResult.getAccessToken().getUserId()
-                                + "\n" +
-                                "Auth Token: "
-                                + loginResult.getAccessToken().getToken()
-                );
-                /*
-                String[] login_info = {loginResult.getAccessToken().getUserId(), loginResult.getAccessToken().getToken()};
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("LoginActivity", response.toString());
 
-                intent.putExtra("login_key", login_info);
-                startActivity(intent);
-                */
+                                // Application code
+                                try {
+                                    String email = object.getString("email");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
+
 
             }
 
-
-      @Override
+            @Override
             public void onCancel() {
-                log.info("onCancel()");
                 // App code
-                info.setText("Login attempt canceled.");
+                Log.v("LoginActivity", "cancel");
             }
-
 
             @Override
             public void onError(FacebookException exception) {
-                log.info("onError");
                 // App code
-                info.setText("Login attempt failed.");
-            }
-        });
-
-        //fb login button test
-        fb_login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"FB button clicked",Toast.LENGTH_SHORT).show();
+                Log.v("LoginActivity", exception.getCause().toString());
             }
         });
 
