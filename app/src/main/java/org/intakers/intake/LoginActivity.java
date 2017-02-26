@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -112,10 +114,42 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"All Fields Required",Toast.LENGTH_SHORT).show();
                 }
 
+                if (isEmailValid(email.getText().toString())== false) {
+                    Toast.makeText(getApplicationContext(),"Not a Valid Email Address",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+                String email_to_pass = email.getText().toString();
+                String password_to_pass = password.getText().toString();
+
+                Intent intent = new Intent();
+
+
 
             }
         });
 
+    }
+
+    /**
+     * method is used for checking valid email id format.
+     *
+     * @param email
+     * @return boolean true for valid false for invalid
+     */
+    public static boolean isEmailValid(String email) {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
     }
 
     @Override
