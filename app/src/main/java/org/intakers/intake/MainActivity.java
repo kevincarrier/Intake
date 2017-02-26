@@ -152,4 +152,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+        Intent received = getIntent();
+        String dataReceived = received.getStringExtra("login_key");
+
+        Logger log = Logger.getAnonymousLogger();
+        log.info(dataReceived);
+
+    }
 }

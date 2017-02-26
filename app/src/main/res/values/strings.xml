@@ -15,4 +15,6 @@
     <string name="manual_add">Enter the name of the food</string>
     <string name="manual_add_foodName">Food name here</string>
     <string name="manual_add_submit">Submit</string>
+    <string name="facebook_app_id">1905812519649920</string>
+    <string name="fb_login_protocol_scheme">fb1905812519649920</string>
 </resources>
