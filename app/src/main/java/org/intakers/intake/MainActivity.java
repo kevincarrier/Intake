@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         //Set up the tabs on the tab layout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_list_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_restaurant_menu_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_list_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //set the fragment viewpager for swiping

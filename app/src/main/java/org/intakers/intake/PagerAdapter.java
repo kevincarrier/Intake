@@ -13,8 +13,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     private int numTabs;
 
     private TabFrag1 tab1;
-    private TabFrag2 tab2;
-    private TabFrag1 tab3;
+    private ManualAddFragment tab3;
+    private TabFrag1 tab2;
 
     public PagerAdapter(FragmentManager fm, int numTabs) {
         super(fm);
@@ -28,10 +28,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 tab1 = new TabFrag1();
                 return tab1;
             case 1:
-                tab2 = new TabFrag2();
+                tab2 = new TabFrag1();
                 return tab2;
             case 2:
-                tab3 = new TabFrag1();
+                tab3 = new ManualAddFragment();
                 return tab3;
             default:
                 return null;
