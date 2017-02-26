@@ -109,11 +109,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Not a Valid Email Address",Toast.LENGTH_SHORT).show();
                 }
 
-
-
                 String email_to_pass = email.getText().toString();
                 String password_to_pass = password.getText().toString();
 
+                //change activity code here
                 Intent intent = new Intent();
 
             }
