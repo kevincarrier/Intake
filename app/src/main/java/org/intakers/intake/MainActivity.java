@@ -86,17 +86,26 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                log.info("action_settings clicked");
                 return true;
 
             case R.id.action_microphone:
                 // User chose the "microphone" option, begin speech to text
+                log.info("action_microphone clicked");
                 promptSpeechInput();
+                return true;
 
+            case R.id.action_camera:
+                //User chose the camera option
+                log.info("action_camera clicked");
+                Intent intent = new Intent(MainActivity.this, DescribeActivity.class);
+                startActivity(intent);
                 return true;
 
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
+                log.info("default is clicked");
                 return super.onOptionsItemSelected(item);
 
         }
