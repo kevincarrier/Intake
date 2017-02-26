@@ -28,10 +28,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent received = getIntent();
+        String dataReceived = received.getStringExtra("login_key");
+
+        Logger log = Logger.getAnonymousLogger();
+        log.info(dataReceived);
+
         /*
-        Intent intent = new Intent(MainActivity.this , ManualAddActivity.class);
+        Intent intent = new Intent(MainActivity.this , LoginActivity.class);
         startActivity(intent);
         */
+
 
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
@@ -153,11 +160,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        Intent received = getIntent();
-        String dataReceived = received.getStringExtra("login_key");
-
-        Logger log = Logger.getAnonymousLogger();
-        log.info(dataReceived);
 
     }
-}
+

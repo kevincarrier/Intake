@@ -104,6 +104,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (username.getText().length() == 0 || password.getText().length() == 0) {
                     Toast.makeText(getApplicationContext(),"All Fields Required",Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    startActivity(new Intent(LoginActivity.this , MainActivity.class));
+                }
             }
         });
 
