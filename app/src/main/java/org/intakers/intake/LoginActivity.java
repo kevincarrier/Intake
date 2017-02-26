@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -32,10 +31,7 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity {
 
     Logger log = Logger.getAnonymousLogger();
-
-
     CallbackManager callbackManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         final LoginButton fb_login_button = (LoginButton) findViewById(R.id.login_button);
         fb_login_button.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_friends"));
-        //fb_login_button.setReadPermissions("user_birthday");
-        final TextView info = (TextView) findViewById(R.id.textView);
-        //fb_login_button.setReadPermissions("Email");
 
 
         // Callback registration
@@ -79,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 //PASS THIS
                                 //user_fb_email
+
+                                //test
                                 System.out.println(user_fb_email);
                             }
                         });
@@ -86,9 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
-
-                //System.out.println(user_email);
-
 
             }
 
@@ -109,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (email.getText().length() == 0 || password.getText().length() == 0) {
                     Toast.makeText(getApplicationContext(),"All Fields Required",Toast.LENGTH_SHORT).show();
                 }
@@ -124,8 +115,6 @@ public class LoginActivity extends AppCompatActivity {
                 String password_to_pass = password.getText().toString();
 
                 Intent intent = new Intent();
-
-
 
             }
         });
