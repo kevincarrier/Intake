@@ -37,8 +37,13 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resulter);
 
+
         Intent recievedInfo = getIntent();
         String recievedURL = recievedInfo.getStringExtra("URL");
+
+
+        //Intent newIntent = getIntent();
+        //String foodName = newIntent.getStringExtra("FoodName");
 
 
         retrieveData(recievedURL);
